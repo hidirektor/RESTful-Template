@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/Users');
 
 exports.updateProfile = async (req, res) => {
     const userName = req.params.userName;

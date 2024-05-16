@@ -1,10 +1,14 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Rating = sequelize.define('Rating', {
+const UserRating = sequelize.define('UserRating', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     userName: { type: DataTypes.STRING, unique: true },
     userRating: { type: DataTypes.DOUBLE }
-}, { timestamps: false });
+}, {
+    timestamps: false,
+    charset: 'utf8',
+    collate: 'utf8_general_ci'
+});
 
-module.exports = Rating;
+module.exports = UserRating;
