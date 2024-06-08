@@ -1,21 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('../middleware/authMiddleware');
+const controllerFactory = require('../controllers/controllerFactory');
 
-const registerController = require('../controllers/registerController');
-const loginController = require('../controllers/loginController');
-const logoutController = require('../controllers/logoutController');
-const resetPasswordController = require('../controllers/resetPasswordController');
-const sendOtpController = require('../controllers/sendOtpController');
-const getProfileInfoController = require('../controllers/getProfileInfoController');
-const updateProfileController = require('../controllers/updateProfileController');
+const registerController = controllerFactory.creating('auth/register');
+const loginController = controllerFactory.creating('auth/login');
+const logoutController = controllerFactory.creating('auth/logout');
+const changePassController = controllerFactory.creating('auth/changePass');
+const resetPassController = controllerFactory.creating('auth/resetPass');
 
-router.post('/register', registerController.register);
-router.post('/login', loginController.login);
-router.post('/logout', authMiddleware(), logoutController.logout);
-router.post('/resetPass', resetPasswordController.resetPassword);
-router.post('/sendOTP', sendOtpController.sendOtp);
-router.get('/getProfileInfo/:userName', authMiddleware(), getProfileInfoController.getProfileInfo);
-router.put('/updateProfile/:userName', authMiddleware(), updateProfileController.updateProfile);
+const authMiddleware = require('../middlewares/authMiddleware');
+
+router.post('/register', (req, res) => registerController.create({ req, res }));
+router.post('/login', (req, res) => loginController.create({ req, res }));
+router.post('/logout', (req, res) => logoutController.create({ req, res }));
+router.post('/changePass', authMiddleware, (req, res) => changePassController.update(req, res));
+router.post('/resetPass', (req, res) => resetPassController.create({ req, res }));
 
 module.exports = router;
