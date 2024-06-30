@@ -22,6 +22,7 @@ This repository is a RESTful template designed to accelerate the deployment of R
 - [ ] **File Management**.
 - [ ] **API Limiter**.
 - [ ] **Worker Subsystem**.
+- [ ] **Custom Push Notification Service**.
 
 ## Endpoints To-Do List
 
