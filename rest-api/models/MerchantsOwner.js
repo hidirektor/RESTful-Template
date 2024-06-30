@@ -1,15 +1,15 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const UserDocuments = sequelize.define('UserDocuments', {
+const MerchantsOwner = sequelize.define('MerchantsOwner', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     userName: { type: DataTypes.STRING, unique: true },
-    licenseFrontFace: { type: DataTypes.STRING },
-    licenseBackFace: { type: DataTypes.STRING }
+    phoneNumber: { type: DataTypes.STRING },
+    eMail: { type: DataTypes.STRING, unique: true }
 }, {
     timestamps: false,
     charset: 'utf8',
     collate: 'utf8_general_ci'
 });
 
-module.exports = UserDocuments;
+module.exports = MerchantsOwner;

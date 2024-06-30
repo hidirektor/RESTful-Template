@@ -11,11 +11,7 @@ const sequelize = require('./config/database');
 require('./config/associations');
 
 const authRoutes = require('./routes/authRoutes');
-const tokenRoutes = require('./routes/tokenRoutes');
-const otpRoutes = require('./routes/otpRoutes');
-const userRoutes = require('./routes/userRoutes');
 const locationRoutes = require('./routes/locationRoutes');
-const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
 

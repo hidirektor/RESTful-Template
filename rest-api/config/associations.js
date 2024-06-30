@@ -1,56 +1,56 @@
 const Users = require('../models/User');
-const RefreshTokens = require('../models/RefreshToken');
 const UserPreferences = require('../models/UserPreferences');
 const UserDocuments = require('../models/UserDocuments');
 const UserRating = require('../models/UserRating');
 const UserLocation = require('../models/UserLocation');
+const MerchantsOwner = require('../models/MerchantsOwner');
 const MerchantsAPI = require('../models/MerchantsAPI');
-const Orders = require('../models/Order');
-const ActionLog = require('../models/ActionLog');
-const OTPLog = require('../models/OTPLog');
-const Merchants = require('../models/Merchants');
-const System = require('../models/System');
+const MerchantsOrders = require('../models/MerchantsOrder');
+const Verification = require('../models/Verification');
+const VerificationBike = require('../models/VerificationBike');
+const VerificationOrder = require('../models/VerificationOrder');
+const Merchants = require('../models/Merchant');
 
-// Users.userID > RefreshTokens.userID
-Users.hasOne(RefreshTokens, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-RefreshTokens.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > UserPreferences.userName
+Users.hasOne(UserPreferences, { foreignKey: 'userName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+UserPreferences.belongsTo(Users, { foreignKey: 'userName', targetKey: 'userName' });
 
-// Users.userID > UserDocuments.userID
-Users.hasOne(UserDocuments, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-UserDocuments.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > UserDocuments.userName
+Users.hasOne(UserDocuments, { foreignKey: 'userName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+UserDocuments.belongsTo(Users, { foreignKey: 'userName', targetKey: 'userName' });
 
-// Users.userID > UserRating.userID
-Users.hasOne(UserRating, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-UserRating.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > Mechants.ownerUserName
+Users.hasOne(Merchants, { foreignKey: 'ownerUserName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+Merchants.belongsTo(Users, { foreignKey: 'ownerUserName', targetKey: 'userName' });
 
-// Users.userID > UserPreferences.userID
-Users.hasOne(UserPreferences, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-UserPreferences.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > MerchantsOwner.userName
+Users.hasOne(MerchantsOwner, { foreignKey: 'userName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+MerchantsOwner.belongsTo(Users, { foreignKey: 'userName', targetKey: 'userName' });
 
-// Users.userID > UserLocation.userID
-Users.hasOne(UserLocation, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-UserLocation.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > UserRating.userName
+Users.hasOne(UserRating, { foreignKey: 'userName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+UserRating.belongsTo(Users, { foreignKey: 'userName', targetKey: 'userName' });
 
-// Users.userID > ActionLog.userID
-Users.hasOne(ActionLog, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-ActionLog.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > Verification.userName
+Users.hasOne(Verification, { foreignKey: 'userName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+Verification.belongsTo(Users, { foreignKey: 'userName', targetKey: 'userName' });
 
-// Users.userID > OTPLog.userID
-Users.hasOne(OTPLog, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-OTPLog.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > VerificationBike.userName
+Users.hasOne(VerificationBike, { foreignKey: 'userName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+VerificationBike.belongsTo(Users, { foreignKey: 'userName', targetKey: 'userName' });
 
-// Users.userID > Verification.userID
-Users.hasOne(ActionLog, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-ActionLog.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > UserLocation.userName
+Users.hasOne(UserLocation, { foreignKey: 'userName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+UserLocation.belongsTo(Users, { foreignKey: 'userName', targetKey: 'userName' });
 
-// Users.userID > Merchants.userID
-Users.hasOne(Merchants, { foreignKey: 'userID', sourceKey: 'userID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-Merchants.belongsTo(Users, { foreignKey: 'userID', targetKey: 'userID' });
+//Users.userName > VerificationOrder.carrierUserName
+Users.hasOne(VerificationOrder, { foreignKey: 'carrierUserName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+VerificationOrder.belongsTo(Users, { foreignKey: 'carrierUserName', targetKey: 'userName' });
 
-// Merchants.merchantID > MerchantsAPI.merchantID
-Merchants.hasMany(MerchantsAPI, { foreignKey: 'merchantID', sourceKey: 'merchantID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-MerchantsAPI.belongsTo(Merchants, { foreignKey: 'merchantID', targetKey: 'merchantID' });
+//Users.userName > MerchantsAPI.userName
+Users.hasOne(MerchantsAPI, { foreignKey: 'ownerName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+MerchantsAPI.belongsTo(Users, { foreignKey: 'ownerName', targetKey: 'userName' });
 
-// Merchants.merchantID > ActiveOrders.merchantID
-Merchants.hasMany(Orders, { foreignKey: 'merchantID', sourceKey: 'merchantID', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
-Orders.belongsTo(Merchants, { foreignKey: 'merchantID', targetKey: 'merchantID' });
+//Users.userName > MerchantsOrders.carrierName
+Users.hasOne(MerchantsOrders, { foreignKey: 'carrierName', sourceKey: 'userName', onUpdate: 'CASCADE', onDelete: 'CASCADE' });
+MerchantsOrders.belongsTo(Users, { foreignKey: 'carrierName', targetKey: 'userName' });

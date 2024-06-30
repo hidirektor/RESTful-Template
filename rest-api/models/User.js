@@ -2,27 +2,19 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const User = sequelize.define('Users', {
-    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    userID: { type: DataTypes.STRING, unique: true, allowNull: false },
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, index: true },
+    NameSurname: { type: DataTypes.STRING },
     userName: { type: DataTypes.STRING, unique: true, allowNull: false },
-    eMail: { type: DataTypes.STRING, unique: true, allowNull: false },
-    userType: { type: DataTypes.STRING, allowNull: false },
-    NameSurname: { type: DataTypes.STRING, allowNull: false },
-    phoneNumber: { type: DataTypes.STRING, allowNull: false },
-    address: { type: DataTypes.STRING, allowNull: false },
-    password: { type: DataTypes.STRING, allowNull: false },
-    profilePhoto: { type: DataTypes.TEXT, allowNull: false },
-    relativeNameSurname: { type: DataTypes.STRING, allowNull: false },
-    relativePhoneNumber: { type: DataTypes.STRING, allowNull: false },
-    registeredMerchant: { type: DataTypes.STRING, allowNull: true },
-    lastPasswordChange: {
-        type: DataTypes.BIGINT,
-        allowNull: true
-    },
-    createdAt: {
-        type: DataTypes.BIGINT,
-        defaultValue: () => Math.floor(Date.now() / 1000)
-    }
+    phoneNumber: { type: DataTypes.STRING },
+    eMail: { type: DataTypes.STRING, unique: true },
+    userType: { type: DataTypes.STRING },
+    address: { type: DataTypes.STRING },
+    password: { type: DataTypes.STRING },
+    profilePhoto: { type: DataTypes.STRING },
+    relativeNameSurname: { type: DataTypes.STRING },
+    relativePhoneNumber: { type: DataTypes.STRING },
+    registeredMerchant: { type: DataTypes.STRING },
+    createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
 }, {
     timestamps: false,
     tableName: 'Users',
