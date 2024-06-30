@@ -6,6 +6,8 @@ const http = require('http');
 const { Server } = require('socket.io');
 const { Worker } = require('worker_threads');
 const rateLimit = require('express-rate-limit');
+const fs = require('fs');
+const path = require('path');
 
 const sequelize = require('./config/database');
 require('./config/associations');
@@ -50,12 +52,21 @@ const swaggerOptions = {
             }
         ]
     },
-    apis: ['./src/routes/*.js', './src/models/*.js'],
+    apis: ['./routes/*.js', './models/*.js'],
 };
 
 const swaggerSpecs = swaggerJsdoc(swaggerOptions);
+fs.writeFileSync('./swagger.json', JSON.stringify(swaggerSpecs, null, 2));
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+app.get('/swagger.json', (req, res) => {
+    res.sendFile(path.join(__dirname, 'swagger.json'));
+});
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(null, {
+    swaggerOptions: {
+        url: '/swagger.json'
+    }
+}));
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/location', locationRoutes);
@@ -78,17 +89,6 @@ io.on('connection', (socket) => {
 sequelize.sync({ force: true, alter: true }).then(() => {
     server.listen(process.env.PORT, () => {
         console.log(`Server running on port ${process.env.PORT}`);
-
-        const trendyolWorker = new Worker('./controllers/services/marketplace/trendyol/trendyolWorker.js');
-        const getirWorker = new Worker('./controllers/services/marketplace/getir/getirWorker.js');
-
-        trendyolWorker.on('error', (error) => {
-            console.error('Trendyol Worker Error:', error);
-        });
-
-        getirWorker.on('error', (error) => {
-            console.error('Getir Worker Error:', error);
-        });
 
         process.on('SIGINT', () => {
             trendyolWorker.postMessage('stop');

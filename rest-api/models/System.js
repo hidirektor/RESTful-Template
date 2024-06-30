@@ -1,6 +1,36 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     System:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: System ID
+ *         systemTitle:
+ *           type: string
+ *           description: Title of the system
+ *         systemDescription:
+ *           type: string
+ *           description: Description of the system
+ *         systemLogo:
+ *           type: string
+ *           description: Logo of the system
+ *         systemFavicon:
+ *           type: string
+ *           description: Favicon of the system
+ *         packageFee:
+ *           type: integer
+ *           description: Fee of the package
+ *         oneTimePackageLimit:
+ *           type: integer
+ *           description: One-time package limit
+ */
+
 const System = sequelize.define('System', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     systemTitle: { type: DataTypes.STRING, allowNull: true },

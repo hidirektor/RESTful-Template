@@ -1,0 +1,445 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "RESTful Template",
+    "version": "1.0.0",
+    "description": "RESTful Template API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
+  ],
+  "paths": {},
+  "components": {
+    "schemas": {
+      "ActionLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated ID of the action log"
+          },
+          "userID": {
+            "type": "string",
+            "description": "The ID of the user"
+          },
+          "logType": {
+            "type": "string",
+            "description": "The type of log"
+          },
+          "plateNumber": {
+            "type": "string",
+            "description": "The plate number associated with the log"
+          },
+          "logTime": {
+            "type": "integer",
+            "description": "The time the log was created"
+          }
+        }
+      },
+      "Merchant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated ID of the merchant"
+          },
+          "userID": {
+            "type": "string",
+            "description": "The ID of the user"
+          },
+          "merchantID": {
+            "type": "string",
+            "description": "The ID of the merchant"
+          },
+          "merchantName": {
+            "type": "string",
+            "description": "The name of the merchant"
+          },
+          "merchantAddress": {
+            "type": "string",
+            "description": "The address of the merchant"
+          },
+          "contactNumber": {
+            "type": "string",
+            "description": "The contact number of the merchant"
+          }
+        }
+      },
+      "MerchantsAPI": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated ID of the merchant API"
+          },
+          "merchantID": {
+            "type": "string",
+            "description": "The ID of the merchant"
+          },
+          "trendyolSupplierID": {
+            "type": "string",
+            "description": "The supplier ID for Trendyol"
+          },
+          "trendyolAPIKey": {
+            "type": "string",
+            "description": "The API key for Trendyol"
+          },
+          "trendyolAPISecretKey": {
+            "type": "string",
+            "description": "The API secret key for Trendyol"
+          },
+          "getirYemekMerchantToken": {
+            "type": "string",
+            "description": "The merchant token for GetirYemek"
+          },
+          "yemekSepetiUsername": {
+            "type": "string",
+            "description": "The username for YemekSepeti"
+          },
+          "yemekSepetiPassword": {
+            "type": "string",
+            "description": "The password for YemekSepeti"
+          },
+          "yemekSepetiGeneratedToken": {
+            "type": "string",
+            "description": "The generated token for YemekSepeti"
+          },
+          "yemekSepetiExpiresStart": {
+            "type": "string",
+            "format": "date",
+            "description": "The start date of the token expiration for YemekSepeti"
+          },
+          "yemekSepetiExpiresEnd": {
+            "type": "string",
+            "format": "date",
+            "description": "The end date of the token expiration for YemekSepeti"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated ID of the order"
+          },
+          "merchantID": {
+            "type": "string",
+            "description": "The ID of the merchant"
+          },
+          "marketplaceName": {
+            "type": "string",
+            "description": "The name of the marketplace"
+          },
+          "marketplaceOrderID": {
+            "type": "string",
+            "description": "The ID of the marketplace order"
+          },
+          "isPaid": {
+            "type": "boolean",
+            "description": "Whether the order is paid"
+          },
+          "orderStatus": {
+            "type": "string",
+            "description": "The status of the order"
+          },
+          "totalPrice": {
+            "type": "integer",
+            "description": "The total price of the order"
+          },
+          "customerNameSurname": {
+            "type": "string",
+            "description": "The name and surname of the customer"
+          },
+          "customerPhoneNumber": {
+            "type": "string",
+            "description": "The phone number of the customer"
+          },
+          "customerAddress": {
+            "type": "string",
+            "description": "The address of the customer"
+          },
+          "customerLatitude": {
+            "type": "number",
+            "format": "double",
+            "description": "The latitude of the customer"
+          },
+          "customerLongitude": {
+            "type": "number",
+            "format": "double",
+            "description": "The longitude of the customer"
+          },
+          "courierReceived": {
+            "type": "boolean",
+            "description": "Whether the courier received the order"
+          },
+          "courierID": {
+            "type": "string",
+            "description": "The ID of the courier"
+          },
+          "courierReceivedTime": {
+            "type": "integer",
+            "description": "The time the courier received the order"
+          },
+          "otpType": {
+            "type": "string",
+            "description": "The type of OTP"
+          },
+          "otpCode": {
+            "type": "string",
+            "description": "The OTP code"
+          },
+          "otpSentTime": {
+            "type": "integer",
+            "description": "The time the OTP was sent"
+          },
+          "deliveryTime": {
+            "type": "integer",
+            "description": "The time the delivery was completed"
+          }
+        }
+      },
+      "OTPLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "OTP log ID"
+          },
+          "userID": {
+            "type": "string",
+            "description": "User ID associated with the OTP"
+          },
+          "otpType": {
+            "type": "string",
+            "description": "Type of the OTP"
+          },
+          "otpCode": {
+            "type": "string",
+            "description": "Code of the OTP"
+          },
+          "otpSent": {
+            "type": "integer",
+            "description": "Timestamp when the OTP was sent"
+          },
+          "otpValidate": {
+            "type": "integer",
+            "description": "Timestamp when the OTP was validated"
+          }
+        }
+      },
+      "RefreshToken": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Refresh token"
+          },
+          "userID": {
+            "type": "string",
+            "description": "User ID associated with the refresh token"
+          }
+        }
+      },
+      "System": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "System ID"
+          },
+          "systemTitle": {
+            "type": "string",
+            "description": "Title of the system"
+          },
+          "systemDescription": {
+            "type": "string",
+            "description": "Description of the system"
+          },
+          "systemLogo": {
+            "type": "string",
+            "description": "Logo of the system"
+          },
+          "systemFavicon": {
+            "type": "string",
+            "description": "Favicon of the system"
+          },
+          "packageFee": {
+            "type": "integer",
+            "description": "Fee of the package"
+          },
+          "oneTimePackageLimit": {
+            "type": "integer",
+            "description": "One-time package limit"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "User ID"
+          },
+          "userID": {
+            "type": "string",
+            "description": "Unique user ID"
+          },
+          "userName": {
+            "type": "string",
+            "description": "User's username"
+          },
+          "eMail": {
+            "type": "string",
+            "description": "User's email address"
+          },
+          "userType": {
+            "type": "string",
+            "description": "Type of the user"
+          },
+          "NameSurname": {
+            "type": "string",
+            "description": "User's full name"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "User's phone number"
+          },
+          "address": {
+            "type": "string",
+            "description": "User's address"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
+          },
+          "profilePhoto": {
+            "type": "string",
+            "description": "URL of the user's profile photo"
+          },
+          "relativeNameSurname": {
+            "type": "string",
+            "description": "Name and surname of the user's relative"
+          },
+          "relativePhoneNumber": {
+            "type": "string",
+            "description": "Phone number of the user's relative"
+          },
+          "registeredMerchant": {
+            "type": "string",
+            "description": "Registered merchant of the user"
+          },
+          "lastPasswordChange": {
+            "type": "integer",
+            "description": "Timestamp of the last password change"
+          },
+          "createdAt": {
+            "type": "integer",
+            "description": "Timestamp of user creation"
+          }
+        }
+      },
+      "UserDocuments": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Document ID"
+          },
+          "userID": {
+            "type": "string",
+            "description": "Unique user ID"
+          },
+          "licenseFrontFace": {
+            "type": "string",
+            "description": "Front face of the user's license"
+          },
+          "licenseBackFace": {
+            "type": "string",
+            "description": "Back face of the user's license"
+          }
+        }
+      },
+      "UserLocation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Location ID"
+          },
+          "userID": {
+            "type": "string",
+            "description": "Unique user ID"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "float",
+            "description": "Latitude of the user's location"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float",
+            "description": "Longitude of the user's location"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Timestamp of the location record"
+          }
+        }
+      },
+      "UserPreferences": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Preference ID"
+          },
+          "userID": {
+            "type": "string",
+            "description": "Unique user ID"
+          },
+          "nightMode": {
+            "type": "boolean",
+            "description": "Whether night mode is enabled"
+          },
+          "selectedLanguage": {
+            "type": "string",
+            "description": "User's selected language"
+          },
+          "firstBreakTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "First break time of the user"
+          },
+          "secondBreakTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Second break time of the user"
+          }
+        }
+      },
+      "UserRating": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Rating ID"
+          },
+          "userID": {
+            "type": "string",
+            "description": "Unique user ID"
+          },
+          "userRating": {
+            "type": "number",
+            "format": "double",
+            "description": "User's rating"
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}

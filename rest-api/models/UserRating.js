@@ -1,6 +1,25 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     UserRating:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: Rating ID
+ *         userID:
+ *           type: string
+ *           description: Unique user ID
+ *         userRating:
+ *           type: number
+ *           format: double
+ *           description: User's rating
+ */
+
 const UserRating = sequelize.define('UserRating', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     userID: { type: DataTypes.STRING, unique: true, allowNull: false },

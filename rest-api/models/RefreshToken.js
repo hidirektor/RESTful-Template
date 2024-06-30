@@ -1,6 +1,21 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     RefreshToken:
+ *       type: object
+ *       properties:
+ *         token:
+ *           type: string
+ *           description: Refresh token
+ *         userID:
+ *           type: string
+ *           description: User ID associated with the refresh token
+ */
+
 const RefreshToken = sequelize.define('RefreshToken', {
     token: { type: DataTypes.STRING, primaryKey: true },
     userID: { type: DataTypes.STRING, unique: true, allowNull: false }
