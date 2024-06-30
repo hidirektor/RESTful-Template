@@ -91,8 +91,6 @@ sequelize.sync({ force: true, alter: true }).then(() => {
         console.log(`Server running on port ${process.env.PORT}`);
 
         process.on('SIGINT', () => {
-            trendyolWorker.postMessage('stop');
-            getirWorker.postMessage('stop');
             server.close(() => {
                 console.log('Server shut down');
                 process.exit(0);

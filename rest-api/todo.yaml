@@ -1,0 +1,25 @@
+/login
+/register
+/resetPass
+/forgetPass (Sıfırlama Maili Gönder -- Link)
+/sendMailOTP
+/sendSMSOTP
+/verifyOTP
+/deactivateAccount
+/activateAccount
+/deleteAccount (7 günlük bekleme süresi ardından kalıcı silme -- 10 yıl saklama)
+/refreshToken
+/updateProfile/:userName
+/getProfile/:userName
+/getPreferences/:userName
+/updatePreferences/:userName
+/getDocuments/:userName
+/updateDocuments/:userName
+/getRating/:userName
+/updateRating/:userName
+/system/get/users
+/system/get/merchants
+/system/delete/:userName
+/system/delete/:merchantName
+/system/update/:userName
+/system/update/:merchantName
