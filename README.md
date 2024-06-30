@@ -9,38 +9,52 @@ This repository is a RESTful template designed to accelerate the deployment of R
 - **JWT (JSON Web Tokens)**: For secure user authentication and authorization.
 - **Sequelize**: A promise-based Node.js ORM for MySQL, featuring easy-to-use relationships.
 
+## General To-Do List
+- [ ] **JWT Authentication**.
+- [ ] **Role Based Authorization**.
+- [ ] **SysOp Integration**.
+- [ ] **Custom Error Handling**.
+- [ ] **Forget Password Mail**.
+- [ ] **netgsm Integration**.
+- [ ] **minIO Integration**.
+- [ ] **Cloudflare Integration**.
+- [ ] **General Configuration File**: Users can be choose cloudflare or minio or base64.
+- [ ] **File Management**.
+- [ ] **API Limiter**.
+- [ ] **Worker Subsystem**.
+
 ## Endpoints To-Do List
 
 ### User Management
-- **/login**: User login.
-- **/register**: User registration.
-- **/resetPass**: Reset password.
-- **/forgetPass**: Send reset password email with a link.
-- **/sendMailOTP**: Send OTP (One-Time Password) via email.
-- **/sendSMSOTP**: Send OTP via SMS.
-- **/verifyOTP**: Verify the OTP.
-- **/deactivateAccount**: Deactivate user account.
-- **/activateAccount**: Activate user account.
-- **/deleteAccount**: Permanently delete user account after a 7-day waiting period (data retention for 10 years).
-- **/refreshToken**: Refresh authentication token.
+- [ ] **/login**: User login.
+- [ ] **/register**: User registration.
+- [ ] **/resetPass**: Reset password.
+- [ ] **/forgetPass**: Send reset password email with a link.
+- [ ] **/sendMailOTP**: Send OTP (One-Time Password) via email.
+- [ ] **/sendSMSOTP**: Send OTP via SMS.
+- [ ] **/verifyOTP**: Verify the OTP.
+- [ ] **/deactivateAccount**: Deactivate user account.
+- [ ] **/activateAccount**: Activate user account.
+- [ ] **/deleteAccount**: Permanently delete user account after a 7-day waiting period (data retention for 10 years).
+- [ ] **/refreshToken**: Refresh authentication token.
 
 ### Profile Management
-- **/updateProfile/:userName**: Update user profile by username.
-- **/getProfile/:userName**: Get user profile by username.
-- **/getPreferences/:userName**: Get user preferences by username.
-- **/updatePreferences/:userName**: Update user preferences by username.
-- **/getDocuments/:userName**: Get user documents by username.
-- **/updateDocuments/:userName**: Update user documents by username.
-- **/getRating/:userName**: Get user rating by username.
-- **/updateRating/:userName**: Update user rating by username.
+- [ ] **/updateProfile/:userName**: Update user profile by username.
+- [ ] **/getProfile/:userName**: Get user profile by username.
+- [ ] **/getPreferences/:userName**: Get user preferences by username.
+- [ ] **/updatePreferences/:userName**: Update user preferences by username.
+- [ ] **/getDocuments/:userName**: Get user documents by username.
+- [ ] **/updateDocuments/:userName**: Update user documents by username.
+- [ ] **/getRating/:userName**: Get user rating by username.
+- [ ] **/updateRating/:userName**: Update user rating by username.
 
 ### System Management
-- **/system/get/users**: Retrieve all users.
-- **/system/get/merchants**: Retrieve all merchants.
-- **/system/delete/:userName**: Delete user by username.
-- **/system/delete/:merchantName**: Delete merchant by merchant name.
-- **/system/update/:userName**: Update user details by username.
-- **/system/update/:merchantName**: Update merchant details by merchant name.
+- [ ] **/system/get/users**: Retrieve all users.
+- [ ] **/system/get/merchants**: Retrieve all merchants.
+- [ ] **/system/delete/:userName**: Delete user by username.
+- [ ] **/system/delete/:merchantName**: Delete merchant by merchant name.
+- [ ] **/system/update/:userName**: Update user details by username.
+- [ ] **/system/update/:merchantName**: Update merchant details by merchant name.
 
 ## Getting Started
 
