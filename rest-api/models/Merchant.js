@@ -3,9 +3,11 @@ const sequelize = require('../config/database');
 
 const Merchant = sequelize.define('Merchants', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    merchantName: { type: DataTypes.STRING },
-    ownerUserName: { type: DataTypes.STRING, unique: true },
-    contactNumber: { type: DataTypes.STRING }
+    userID: { type: DataTypes.STRING, unique: true, allowNull: false },
+    merchantID: { type: DataTypes.STRING, unique: true, allowNull: false },
+    merchantName: { type: DataTypes.STRING, allowNull: true },
+    merchantAddress: { type: DataTypes.STRING, allowNull: true },
+    contactNumber: { type: DataTypes.STRING, allowNull: true }
 }, {
     timestamps: false,
     tableName: 'Merchants',

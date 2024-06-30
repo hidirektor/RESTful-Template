@@ -12,6 +12,8 @@ require('./config/associations');
 
 const authRoutes = require('./routes/authRoutes');
 const locationRoutes = require('./routes/locationRoutes');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 const app = express();
 
@@ -32,12 +34,31 @@ const globalRateLimiter = rateLimit({
 
 app.use(globalRateLimiter);
 
+// Swagger setup
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'RESTful Template',
+            version: '1.0.0',
+            description: 'RESTful Template API'
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000',
+                description: 'Local server'
+            }
+        ]
+    },
+    apis: ['./src/routes/*.js', './src/models/*.js'],
+};
+
+const swaggerSpecs = swaggerJsdoc(swaggerOptions);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/token', tokenRoutes);
-app.use('/api/v1/otp', otpRoutes);
-app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/location', locationRoutes);
-app.use('/api/v1/order', orderRoutes);
 
 const server = http.createServer(app);
 const io = new Server(server);
