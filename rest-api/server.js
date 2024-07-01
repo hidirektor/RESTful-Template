@@ -13,7 +13,13 @@ const sequelize = require('./config/database');
 require('./config/associations');
 
 const authRoutes = require('./routes/authRoutes');
+const tokenRoutes = require('./routes/tokenRoutes');
+const otpRoutes = require('./routes/otpRoutes');
+const userRoutes = require('./routes/userRoutes');
 const locationRoutes = require('./routes/locationRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const merchantRoutes = require('./routes/merchantRoutes');
+
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -36,7 +42,6 @@ const globalRateLimiter = rateLimit({
 
 app.use(globalRateLimiter);
 
-// Swagger setup
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
@@ -69,7 +74,12 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(null, {
 }));
 
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/token', tokenRoutes);
+app.use('/api/v1/otp', otpRoutes);
+app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/location', locationRoutes);
+app.use('/api/v1/order', orderRoutes);
+app.use('/api/v1/merchant', merchantRoutes);
 
 const server = http.createServer(app);
 const io = new Server(server);
@@ -89,6 +99,17 @@ io.on('connection', (socket) => {
 sequelize.sync({ force: true, alter: true }).then(() => {
     server.listen(process.env.PORT, () => {
         console.log(`Server running on port ${process.env.PORT}`);
+
+        //const trendyolWorker = new Worker('./services/marketplace/trendyol/trendyolWorker.js');
+        //const getirWorker = new Worker('./services/marketplace/getir/getirWorker.js');
+
+        /*trendyolWorker.on('error', (error) => {
+            console.error('Trendyol Worker Error:', error);
+        });
+
+        getirWorker.on('error', (error) => {
+            console.error('Getir Worker Error:', error);
+        });*/
 
         process.on('SIGINT', () => {
             server.close(() => {

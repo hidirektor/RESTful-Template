@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('../middleware/authMiddleware');
 
-const registerController = require('../controllers/auth/registerController');
-const loginController = require('../controllers/auth/loginController');
-const logoutController = require('../controllers/auth/logoutController');
-const resetPasswordController = require('../controllers/reset/resetPasswordController');
-const getProfileInfoController = require('../controllers/user/getProfileInfoController');
-const updateProfileController = require('../controllers/user/updateProfileController');
+const register = require('../controllers/auth/register');
+const login = require('../controllers/auth/login');
+const logout = require('../controllers/auth/logout');
+const changePass = require('../controllers/auth/changePass');
+const resetPass = require('../controllers/auth/resetPass');
 
-router.post('/register', registerController.register);
-router.post('/login', loginController.login);
-router.post('/logout', authMiddleware(), logoutController.logout);
-router.post('/resetPass', resetPasswordController.resetPassword);
-router.get('/getProfileInfo/:userName', authMiddleware(), getProfileInfoController.getProfileInfo);
-router.put('/updateProfile/:userName', authMiddleware(), updateProfileController.updateProfile);
+const authMiddleware = require('../middlewares/authMiddleware');
+
+router.post('/register', register);
+router.post('/login', login);
+router.post('/logout', logout);
+router.post('/changePass', authMiddleware, changePass);
+router.post('/resetPass', resetPass);
 
 module.exports = router;

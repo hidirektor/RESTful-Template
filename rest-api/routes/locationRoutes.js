@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const updateLocationController = require('../controllers/user/location/updateLocationController');
-const authMiddleware = require('../middleware/authMiddleware');
+const updateLocation = require('../controllers/location/updateLocation');
+const authMiddleware = require('../middlewares/authMiddleware');
+const roleMiddleware = require('../middlewares/roleMiddleware');
 
-router.post('/updateLocation', authMiddleware(['Carrier']), updateLocationController.updateLocation);
+router.post('/updateLocation', authMiddleware, roleMiddleware(['Carrier']), updateLocation);
 
 module.exports = router;

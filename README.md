@@ -10,34 +10,34 @@ This repository is a RESTful template designed to accelerate the deployment of R
 - **Sequelize**: A promise-based Node.js ORM for MySQL, featuring easy-to-use relationships.
 
 ## General To-Do List
-- [ ] **JWT Authentication**.
-- [ ] **Role Based Authorization**.
+- [X] **JWT Authentication**.
+- [X] **Role Based Authorization**.
 - [ ] **SysOp Integration**.
-- [ ] **Custom Error Handling**.
+- [X] **Custom Error Handling**.
 - [ ] **Forget Password Mail**.
-- [ ] **netgsm Integration**.
+- [X] **netgsm Integration**.
 - [ ] **minIO Integration**.
 - [ ] **Cloudflare Integration**.
 - [ ] **General Configuration File**: Users can be choose cloudflare or minio or base64.
 - [ ] **File Management**.
-- [ ] **API Limiter**.
-- [ ] **Worker Subsystem**.
+- [X] **API Limiter**.
+- [X] **Worker Subsystem**.
 - [ ] **Custom Push Notification Service**.
 
 ## Endpoints To-Do List
 
 ### User Management
-- [ ] **/login**: User login.
-- [ ] **/register**: User registration.
-- [ ] **/resetPass**: Reset password.
+- [X] **/login**: User login.
+- [X] **/register**: User registration.
+- [X] **/resetPass**: Reset password.
 - [ ] **/forgetPass**: Send reset password email with a link.
-- [ ] **/sendMailOTP**: Send OTP (One-Time Password) via email.
-- [ ] **/sendSMSOTP**: Send OTP via SMS.
-- [ ] **/verifyOTP**: Verify the OTP.
+- [X] **/sendMailOTP**: Send OTP (One-Time Password) via email.
+- [X] **/sendSMSOTP**: Send OTP via SMS.
+- [X] **/verifyOTP**: Verify the OTP.
 - [ ] **/deactivateAccount**: Deactivate user account.
 - [ ] **/activateAccount**: Activate user account.
 - [ ] **/deleteAccount**: Permanently delete user account after a 7-day waiting period (data retention for 10 years).
-- [ ] **/refreshToken**: Refresh authentication token.
+- [X] **/refreshToken**: Refresh authentication token.
 
 ### Profile Management
 - [ ] **/updateProfile/:userName**: Update user profile by username.
