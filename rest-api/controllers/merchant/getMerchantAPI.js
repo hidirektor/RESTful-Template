@@ -2,6 +2,32 @@ const Merchants = require('../../models/Merchant');
 const MerchantsAPI = require('../../models/MerchantsAPI');
 const CustomError = require('../../utils/customError');
 
+/**
+ * @swagger
+ * /merchant/getMerchantAPI:
+ *   post:
+ *     summary: Get merchant API details
+ *     tags: [Merchant]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               phoneNumber:
+ *                 type: string
+ *               userID:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Merchant API details retrieved successfully
+ *       404:
+ *         description: Merchant not found
+ *       500:
+ *         description: Internal server error
+ */
+
 module.exports = async (req, res) => {
     const { phoneNumber, userID } = req.body;
 

@@ -2,6 +2,47 @@ const MerchantService = require('../../services/merchantService');
 const Merchants = require('../../models/Merchant');
 const CustomError = require('../../utils/customError');
 
+/**
+ * @swagger
+ * /merchant/updateMerchantAPI:
+ *   post:
+ *     summary: Update merchant API details
+ *     tags: [Merchant]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               phoneNumber:
+ *                 type: string
+ *               userID:
+ *                 type: string
+ *               marketplace-API:
+ *                 type: object
+ *                 properties:
+ *                   trendyolSupplierID:
+ *                     type: string
+ *                   trendyolAPIKey:
+ *                     type: string
+ *                   trendyolAPISecretKey:
+ *                     type: string
+ *                   getirYemekMerchantToken:
+ *                     type: string
+ *                   yemekSepetiUsername:
+ *                     type: string
+ *                   yemekSepetiPassword:
+ *                     type: string
+ *     responses:
+ *       200:
+ *         description: Marketplace API details updated successfully
+ *       404:
+ *         description: Merchant not found
+ *       500:
+ *         description: Internal server error
+ */
+
 module.exports = async (req, res) => {
     const { phoneNumber, userID, 'marketplace-API': marketplaceAPI } = req.body;
 
